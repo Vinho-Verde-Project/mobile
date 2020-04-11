@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Winner</string>
+    <string name="app_name2">WINEER</string>
+    <string name="my_text"><u>Entrar</u></string>
+    <string name="my_text2"><u>Registre-se</u></string>
+    <string name="title_linechart">Line Chart</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_graph">Graph</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Não é um email válido</string>
+    <string name="invalid_password">Password deve conter no minímo 6 caracteres</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_register">WINEER</string>
+    <string name="about">Sobre</string>
+    <string name="sair">Sair</string>
+    <string name="devs"></string>
+
+
+</resources>

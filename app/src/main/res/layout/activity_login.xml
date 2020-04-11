@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/loginpage"
+        android:gravity="center"
+        android:background="#FFFFFF"
+        android:padding="25dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:id="@+id/img_wineer"
+            app:srcCompat="@mipmap/ic_wineer"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_wineer"
+            android:textSize="18dp"
+            android:textColor="#000000"
+            android:paddingBottom="0dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="0dp"
+            android:text="wineer"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/textview_login"
+            android:textSize="15dp"
+            android:textColor="#000000"
+            android:padding="30dp"
+            android:gravity="center"
+            android:text="Faça Login na sua conta"
+            />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="true"
+
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:hint="Password"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="35dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/login"
+                android:enabled="false"
+                android:text="Entrar"
+                android:background="#3F2839"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                app:layout_constraintTop_toBottomOf="@+id/password"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/textview_naopossuiconta"
+            android:textSize="15dp"
+            android:textColor="#000000"
+            android:paddingTop="40dp"
+            android:text="Não possui conta?">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/my_text2"
+            android:id="@+id/textview_register"
+            />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
