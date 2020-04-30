@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         //getSupportActionBar()?.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME ,ActionBar.DISPLAY_USE_LOGO);
         //actionBar?.setIcon(R.drawable.ic_action_bar)
-
+        val guth : String = "leonardo"
         //Part1
         val entries = ArrayList<Entry>()
 

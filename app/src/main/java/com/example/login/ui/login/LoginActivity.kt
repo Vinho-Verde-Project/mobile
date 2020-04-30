@@ -94,6 +94,7 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 // start your next activity
+
                 startActivity(intent)
             }
 
