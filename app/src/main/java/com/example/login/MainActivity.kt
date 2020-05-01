@@ -8,24 +8,28 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import kotlinx.android.synthetic.main.activity_main.*
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toolbar
-import androidx.appcompat.app.ActionBar
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.login.ui.login.LoginActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IVolley {
+
+    private var mRequestQueue:RequestQueue?=null
+    val url= "https://jsonplaceholder.typicode.com/posts"
+    private var iVolley:IVolley?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
 
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
@@ -39,60 +43,23 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)// set drawable icon
-        getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.ic_action_bar);// set drawable icon
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true)// set drawable icon
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_action_bar);// set drawable icon
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
-        //supportActionBar?.setIcon(R.drawable.ic_action_bar)
-
-        //getSupportActionBar()?.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME ,ActionBar.DISPLAY_USE_LOGO);
-        //actionBar?.setIcon(R.drawable.ic_action_bar)
-
-        //Part1
-        val entries = ArrayList<Entry>()
-
-//Part2
-        entries.add(Entry(1f, 10f))
-        entries.add(Entry(2f, 2f))
-        entries.add(Entry(3f, 7f))
-        entries.add(Entry(4f, 20f))
-        entries.add(Entry(5f, 16f))
-
-//Part3
-        val vl = LineDataSet(entries, "My Type")
-
-//Part4
-        vl.setDrawValues(false)
-        vl.setDrawFilled(true)
-        vl.lineWidth = 3f
-        vl.fillColor = R.color.colorPrimary
-        vl.fillAlpha = R.color.colorAccent
-
-//Part5
-        linechart.xAxis.labelRotationAngle = 0f
-
-//Part6
-        linechart.data = LineData(vl)
-
-//Part7
-        linechart.axisRight.isEnabled = false
-        linechart.xAxis.axisMaximum = +0.1f
-
-//Part8
-        linechart.setTouchEnabled(true)
-        linechart.setPinchZoom(true)
-
-//Part9
-        linechart.description.text = "Days"
-        linechart.setNoDataText("No forex yet!")
-
-//Part10
-        linechart.animateX(1800, Easing.EaseInExpo)
+        val queue = Volley.newRequestQueue(this@MainActivity)
+        val request = StringRequest(Request.Method.GET,url, Response.Listener {
+                response -> Toast.makeText(this@MainActivity, ""+response, Toast.LENGTH_SHORT).show()
+        }, Response.ErrorListener {
+            Toast.makeText(this@MainActivity, "something is wrong", Toast.LENGTH_SHORT).show()
+        })
+        queue.add(request)
 
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        getMenuInflater().inflate(R.menu.main_menu,menu)
+        menuInflater.inflate(R.menu.main_menu,menu)
         return true
     }
 
@@ -106,7 +73,10 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
+    override fun onResponse(response: String) {
+        //show toast
+        Toast.makeText(this@MainActivity, ""+response, Toast.LENGTH_SHORT).show()
+    }
 
 
 }

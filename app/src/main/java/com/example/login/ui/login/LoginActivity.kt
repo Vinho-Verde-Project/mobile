@@ -12,13 +12,30 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.login.IVolley
 import com.example.login.MainActivity
+import com.example.login.MyVolleyRequest
 
 import com.example.login.R
+import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
+import java.lang.reflect.Method
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), IVolley {
 
     private lateinit var loginViewModel: LoginViewModel
+    val url= "https://jsonplaceholder.typicode.com/posts"
+    val jsonobj = JSONObject()
+
+    override fun onResponse(response: String) {
+        //show toast
+        Toast.makeText(this@LoginActivity, ""+response,Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,8 +110,18 @@ class LoginActivity : AppCompatActivity() {
             }
 
             login.setOnClickListener {
-                // start your next activity
-                startActivity(intent)
+
+                jsonobj.put("username", username.text.toString())
+                jsonobj.put("password", password.text.toString())
+                val queue = Volley.newRequestQueue(this@LoginActivity)
+                val request = JsonObjectRequest(Request.Method.POST, url, jsonobj,
+                    Response.Listener {
+                        // start your next activity
+                            response -> startActivity(intent)
+                    }, Response.ErrorListener {
+                        Toast.makeText(this@LoginActivity, "something is wrong, try again" , Toast.LENGTH_SHORT).show()
+                    })
+                queue.add(request)
             }
 
             register.setOnClickListener {
@@ -119,6 +146,10 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
+
+
+
+
 }
 
 /**

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,9 +33,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/linechart"
+
+    <TextView
+        android:id="@+id/set_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Set_text"
+        android:textSize="50dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="124dp"
+        tools:ignore="MissingConstraints"
+        android:textColor="@color/colorAccent"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_get"
+        android:text="Testar Get"
+        android:gravity="center"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
