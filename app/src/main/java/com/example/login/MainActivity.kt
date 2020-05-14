@@ -19,11 +19,10 @@ import com.android.volley.toolbox.Volley
 import com.example.login.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), IVolley {
+class MainActivity : AppCompatActivity() {
 
     private var mRequestQueue:RequestQueue?=null
     val url= "https://jsonplaceholder.typicode.com/posts"
-    private var iVolley:IVolley?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,11 +70,6 @@ class MainActivity : AppCompatActivity(), IVolley {
             R.id.about -> startActivity(intent2)
         }
         return true
-    }
-
-    override fun onResponse(response: String) {
-        //show toast
-        Toast.makeText(this@MainActivity, ""+response, Toast.LENGTH_SHORT).show()
     }
 
 
