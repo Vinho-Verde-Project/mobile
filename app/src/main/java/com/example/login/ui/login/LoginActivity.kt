@@ -9,23 +9,69 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import com.apollographql.apollo.ApolloCall
+import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.api.cache.http.HttpCachePolicy
+import com.apollographql.apollo.cache.http.ApolloHttpCache
+import com.apollographql.apollo.cache.http.DiskLruHttpCacheStore
+import com.apollographql.apollo.exception.ApolloException
 import com.example.login.MainActivity
 
 import com.example.login.R
+import okhttp3.OkHttpClient
 import org.json.JSONObject
+import java.io.File
+import kotlin.random.Random
 
 class LoginActivity : AppCompatActivity() {
-
+    lateinit var apolloClient: ApolloClient
     private lateinit var loginViewModel: LoginViewModel
     val url= "https://jsonplaceholder.typicode.com/posts"
     val jsonobj = JSONObject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //////////////////////////////
+        var file = File(this.applicationContext.filesDir,"Rick")
+        val size : Long = 1024*1024
+        val cacheStore = DiskLruHttpCacheStore(file, size)
+        val base_url = "https://rickandmortyapi.com/graphql"
+        //var resultado : List<FeedResultQuery.Result>? = null
 
+        apolloClient = ApolloClient.builder()
+            .serverUrl(base_url)
+            .httpCache(ApolloHttpCache(cacheStore))
+            .okHttpClient(OkHttpClient()).build()
+
+        /*
+        var botao = findViewById<Button>(R.id.botao)
+        val label = findViewById<TextView>(R.id.resultado)
+        botao.setOnClickListener(){
+            apolloClient.query(FeedResultQuery.builder().build())
+                .httpCachePolicy(HttpCachePolicy.CACHE_FIRST)
+                .enqueue(object : ApolloCall
+                .Callback<FeedResultQuery.Data>(){
+                    override fun onFailure(e: ApolloException) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onResponse(response: Response<FeedResultQuery.Data>) {
+                        Log.d("TAG", " " + response.data + "\n\n\n\n")
+
+                        resultado = response.data?.characters()?.results()
+                    }
+
+                })
+            botao.setBackgroundColor(Random.nextInt(100))
+            label.setText(resultado?.get(Random.nextInt(resultado!!.size))?.name()).toString()
+
+        }
+        */////////////////////////////////////
         setContentView(R.layout.activity_login)
 
         val username = findViewById<EditText>(R.id.username)
