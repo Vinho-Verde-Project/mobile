@@ -53,6 +53,15 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+
+        /*Ação botão entre sem login*/
+        val breaklogin : Button = findViewById(R.id.breaklogin)
+        breaklogin.setOnClickListener {
+            val intentbreak = Intent(this, MainActivity::class.java)
+            startActivity(intentbreak)
+        }
+
+
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
             val loginResult = it ?: return@Observer
 
