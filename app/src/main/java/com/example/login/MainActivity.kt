@@ -2,22 +2,19 @@ package com.example.login
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
-import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.login.ui.login.LoginActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
+import javax.net.ssl.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +25,51 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        /**/
+        val TAG = "NukeSSLCerts"
+        fun nuke() {
+            try {
+                val trustAllCerts: Array<TrustManager> = arrayOf<TrustManager>(
+                    object : X509TrustManager {
+                        val acceptedIssuers: Array<Any?>
+                            get() = arrayOfNulls(0)
+
+                        override fun checkClientTrusted(
+                            certs: Array<X509Certificate?>?,
+                            authType: String?
+                        ) {
+                        }
+
+                        override fun checkServerTrusted(
+                            certs: Array<X509Certificate?>?,
+                            authType: String?
+                        ) {
+                        }
+
+                        override fun getAcceptedIssuers(): Array<X509Certificate> {
+                            TODO("Not yet implemented")
+                        }
+                    }
+                )
+                val sc: SSLContext = SSLContext.getInstance("SSL")
+                sc.init(null, trustAllCerts, SecureRandom())
+                HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory())
+                HttpsURLConnection.setDefaultHostnameVerifier(object : HostnameVerifier {
+                    override fun verify(arg0: String?, arg1: SSLSession?): Boolean {
+                        return true
+                    }
+                })
+            } catch (e: Exception) {
+            }
+        }
+
+        nuke()
+
+
+
+        /**/
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)

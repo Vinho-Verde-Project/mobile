@@ -21,6 +21,9 @@
     <string name="about">Sobre</string>
     <string name="sair">Sair</string>
     <string name="devs"></string>
+    <string name="producao">Produção Atual</string>
+    <string name="vendaAnual">Vendas Anuais</string>
+    <string name="estoqueProd">Produtos em Estoque</string>
 
 
 </resources>
