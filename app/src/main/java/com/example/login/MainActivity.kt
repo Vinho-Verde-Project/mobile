@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var mRequestQueue:RequestQueue?=null
-    val url= "https://jsonplaceholder.typicode.com/posts"
+    //val url= "https://jsonplaceholder.typicode.com/posts"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)// set drawable icon
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_action_bar);// set drawable icon
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
-
+        /*
         val queue = Volley.newRequestQueue(this@MainActivity)
         val request = StringRequest(Request.Method.GET,url, Response.Listener {
                 response -> Toast.makeText(this@MainActivity, ""+response, Toast.LENGTH_SHORT).show()
@@ -53,6 +53,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "something is wrong", Toast.LENGTH_SHORT).show()
         })
         queue.add(request)
+
+         */
 
     }
 

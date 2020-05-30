@@ -6,19 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.login.R
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import org.json.JSONObject
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    val url= "https://127.0.0.1:53832/graphql"
+    val jsonobj = JSONObject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +40,24 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        var  textR = root.findViewById<TextView>(R.id.text_home)
+        jsonobj.put("query"," { employees { id username firstName lastName nif birthdate adress phone email hashedPassword createdAt roleId} }")
+        val queue = Volley.newRequestQueue(this.context)
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, jsonobj,
+            Response.Listener {
+                //start your next activity
+                    responce -> textR.setText("-- " + responce.toString() + " --")
+                //response -> startActivity(intent)
+            }, Response.ErrorListener {
+                textR.setText("-- " + jsonobj.toString() + " --")
+                Toast.makeText(this.context, "something is wrong, try again" , Toast.LENGTH_SHORT).show()
+            })
+        queue.add(request)
+
+
+
 
         val pieChart : PieChart = root.findViewById(R.id.pieChart)
 

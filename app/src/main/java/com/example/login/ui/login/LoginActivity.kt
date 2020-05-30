@@ -12,6 +12,10 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.login.MainActivity
 
 import com.example.login.R
@@ -106,17 +110,19 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
 
-                //jsonobj.put("username", username.text.toString())
-                //jsonobj.put("password", password.text.toString())
-                //val queue = Volley.newRequestQueue(this@LoginActivity)
-                //val request = JsonObjectRequest(Request.Method.POST, url, jsonobj,
-                //    Response.Listener {
-                        // start your next activity
-                //          response -> startActivity(intent)
-                //  }, Response.ErrorListener {
-                //  Toast.makeText(this@LoginActivity, "something is wrong, try again" , Toast.LENGTH_SHORT).show()
-                //  })
-                //queue.add(request)
+                jsonobj.put("email", username.text.toString())
+                jsonobj.put("password", password.text.toString())
+                val queue = Volley.newRequestQueue(this@LoginActivity)
+                val request = JsonObjectRequest(
+                    Request.Method.POST, url, jsonobj,
+                    Response.Listener {
+                         //start your next activity
+                        responce ->
+                        //response -> startActivity(intent)
+                  }, Response.ErrorListener {
+                  Toast.makeText(this@LoginActivity, "something is wrong, try again" , Toast.LENGTH_SHORT).show()
+                  })
+                queue.add(request)
                 startActivity(intent)
             }
 
