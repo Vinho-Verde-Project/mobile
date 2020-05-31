@@ -116,11 +116,11 @@ class LoginActivity : AppCompatActivity() {
                 val request = JsonObjectRequest(
                     Request.Method.POST, url, jsonobj,
                     Response.Listener {
-                         //start your next activity
-                        responce ->
-                        //response -> startActivity(intent)
-                  }, Response.ErrorListener {
-                  Toast.makeText(this@LoginActivity, "something is wrong, try again" , Toast.LENGTH_SHORT).show()
+
+                        responce -> //Toast.makeText(this@LoginActivity, "Valid Login" , Toast.LENGTH_SHORT).show()
+
+                  }, Response.ErrorListener {error ->
+                        //Toast.makeText(this@LoginActivity, "Invalid Login" , Toast.LENGTH_SHORT).show()
                   })
                 queue.add(request)
                 startActivity(intent)

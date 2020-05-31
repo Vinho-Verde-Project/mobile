@@ -29,7 +29,7 @@ import kotlin.collections.ArrayList
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-
+    //Url  Para acesso a API
     val url= "https://192.168.1.18:56876/graphql"
     val jsonobj = JSONObject()
 
@@ -41,17 +41,11 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        /*val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        */
-        var  textR = root.findViewById<TextView>(R.id.text_home)
 
         lateinit var dados1 : JSONObject
 
         /*NESSE TRECHO FAZ A COMUNICAÇÃO COM O BACKEND*/
-        jsonobj.put("query","{ employees { id username } }")
+        jsonobj.put("query","{ product }")
         val queue = Volley.newRequestQueue(this.context)
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonobj,

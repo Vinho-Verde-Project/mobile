@@ -28,7 +28,7 @@ import org.json.JSONObject
 class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
-
+    //Url  Para acesso a API
     val url= "https://192.168.1.18:56876/graphql"
     val jsonobj = JSONObject()
 
@@ -40,17 +40,11 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel =
             ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        /*val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        */
-
 
         lateinit var dados3 : JSONObject
 
         /*NESSE TRECHO FAZ A COMUNICAÇÃO COM O BACKEND*/
-        jsonobj.put("query","{ employees { id username } }")
+        jsonobj.put("query","{ product }")
         val queue = Volley.newRequestQueue(this.context)
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonobj,
@@ -60,6 +54,8 @@ class NotificationsFragment : Fragment() {
                // Toast.makeText(this.context, ""+error.toString() , Toast.LENGTH_SHORT).show()
             })
         queue.add(request)
+
+
 
         val barChart : BarChart = root.findViewById(R.id.barChart) // Selecionando o gráfico na interface do aplicativo
 

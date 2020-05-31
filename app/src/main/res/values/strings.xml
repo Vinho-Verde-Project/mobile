@@ -24,6 +24,9 @@
     <string name="producao">Produção Atual</string>
     <string name="vendaAnual">Vendas Anuais</string>
     <string name="estoqueProd">Produtos em Estoque</string>
+    <string name="pa">PA</string>
+    <string name="va">VA</string>
+    <string name="pe">PE</string>
 
 
 </resources>

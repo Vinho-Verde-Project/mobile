@@ -24,7 +24,7 @@ import org.json.JSONObject
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
-
+    //Url  Para acesso a API
     val url= "https://192.168.1.18:56876/graphql"
     val jsonobj = JSONObject()
 
@@ -36,15 +36,11 @@ class DashboardFragment : Fragment() {
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        /*val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        */
+
         lateinit var dados2 : JSONObject
 
         /*NESSE TRECHO FAZ A COMUNICAÇÃO COM O BACKEND*/
-        jsonobj.put("query","{ employees { id username } }")
+        jsonobj.put("query","{ product }")
         val queue = Volley.newRequestQueue(this.context)
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonobj,
