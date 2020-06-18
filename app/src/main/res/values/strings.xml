@@ -27,6 +27,10 @@
     <string name="pa">PA</string>
     <string name="va">VA</string>
     <string name="pe">PE</string>
+    <string name="tk">TK</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -17,4 +17,9 @@
         android:icon="@drawable/ic_action_pie"
         android:title="@string/pe" />
 
+    <item
+        android:id="@+id/navigation_tasks"
+        android:icon="@drawable/ic_action_bar"
+        android:title="@string/tk" />
+
 </menu>
