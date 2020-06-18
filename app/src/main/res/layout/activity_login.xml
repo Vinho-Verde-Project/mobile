@@ -86,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/login"
-                android:enabled="false"
+                android:enabled="true"
                 android:text="Entrar"
                 android:background="#3F2839"
                 android:textColor="#FFFFFF"
