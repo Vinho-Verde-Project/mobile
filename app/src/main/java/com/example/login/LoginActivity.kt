@@ -95,11 +95,11 @@ class LoginActivity : AppCompatActivity()  {
 
         }
         /*Ação botão entre sem login*/
-        /*val breaklogin : Button = findViewById(R.id.breaklogin)
+        val breaklogin : Button = findViewById(R.id.breaklogin)
         breaklogin.setOnClickListener {
             val intentbreak = Intent(this, MainActivity::class.java)
             startActivity(intentbreak)
-        }*/
+        }
 
     }
 
